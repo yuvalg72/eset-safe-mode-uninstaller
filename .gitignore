@@ -1,0 +1,17 @@
+# Windows temporary files
+Thumbs.db
+Desktop.ini
+
+# PowerShell temporary files
+*.tmp
+*.log
+
+# Local test artifacts
+esettemp/
+*.lnk
+*.exe
+*.bat
+
+# Editor folders
+.vscode/
+.idea/
