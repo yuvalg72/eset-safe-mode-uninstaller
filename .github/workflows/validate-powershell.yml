@@ -1,0 +1,47 @@
+name: Validate PowerShell
+
+on:
+  pull_request:
+    paths:
+      - '**/*.ps1'
+      - '.github/workflows/validate-powershell.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.ps1'
+      - '.github/workflows/validate-powershell.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-powershell-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Parse PowerShell without execution
+        shell: pwsh
+        run: |
+          $path = Join-Path $PWD 'Uninstall ALL ESET PRODUCT In Safe Mode.ps1'
+          $tokens = $null
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+            $path,
+            [ref]$tokens,
+            [ref]$errors
+          ) | Out-Null
+
+          if ($errors.Count -gt 0) {
+            $errors | ForEach-Object { Write-Error $_.Message }
+            exit 1
+          }
+
+          Write-Host "PowerShell syntax validation passed. Script was not executed."
