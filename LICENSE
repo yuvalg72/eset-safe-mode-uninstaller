@@ -1,6 +1,20 @@
-Internal Use Only
+Source Attribution and Rights Notice
 
-Copyright (c) 2026 Mornex
+Original PowerShell automation: SysTech.
+Public repository maintenance, documentation, safety guidance, and validation additions:
+Copyright (c) 2026 Yuval Grimblat.
 
-This repository is intended for internal operational use only.
-Do not distribute, publish, or execute this tool outside authorized environments.
+The original imported script did not include a verifiable upstream license notice.
+This repository therefore does not claim Mornex authorship and does not grant or
+invent rights for upstream-origin code beyond rights held or authorized by the
+respective copyright holder.
+
+Repository-authored documentation, workflow files, and maintenance changes remain
+the work of their respective authors unless another file states otherwise.
+
+The ESET Uninstaller executable is not distributed in this repository. The script
+downloads ESET software from ESET at runtime. ESET software, trademarks, and
+documentation remain subject to ESET's own terms.
+
+Public availability of this repository does not imply endorsement by SysTech,
+ESET, or Mornex.

@@ -2,6 +2,14 @@
 
 PowerShell utility for removing installed ESET products from a Windows machine by booting into Safe Mode, running the official ESET Uninstaller tool in forced mode, and returning the machine to normal boot mode.
 
+## Provenance
+
+The original PowerShell automation was created by **SysTech**. This repository is a public maintained copy that adds repository documentation, safety guidance, provenance disclosure, and non-executing syntax validation.
+
+This repository does not claim that Mornex authored the original script. The imported copy did not contain a verifiable upstream license notice, so this repository does not invent or relicense upstream rights. See [`LICENSE`](LICENSE) for the current rights notice.
+
+The ESET Uninstaller executable is not redistributed here. The script downloads the official ESET tool at runtime, and that executable remains subject to ESET's own terms and documentation.
+
 > [!WARNING]
 > Do not run this script on an ESET management server, including ERA or ESET PROTECT.
 > Running this script on a management server may remove critical ESET management components and disrupt endpoint management.
@@ -10,15 +18,15 @@ PowerShell utility for removing installed ESET products from a Windows machine b
 
 ```text
 eset-safe-mode-uninstaller/
-├── README.md
-├── scripts/
-│   └── Uninstall ALL ESET PRODUCT In Safe Mode.ps1
-├── docs/
-│   └── CONFLUENCE_GUIDE.md
+├── .github/
+│   └── workflows/
+│       └── validate-powershell.yml
+├── .gitignore
 ├── CHANGELOG.md
-├── SECURITY.md
 ├── LICENSE
-└── .gitignore
+├── README.md
+├── SECURITY.md
+└── Uninstall ALL ESET PRODUCT In Safe Mode.ps1
 ```
 
 ## Overview
@@ -215,6 +223,12 @@ C:\esettemp\NetworkSettings.txt
 ```
 
 Compare it with the current adapter configuration and restore IP, DNS, gateway, VLAN, or routing settings if required.
+
+## Validation
+
+GitHub Actions performs a **syntax-only** PowerShell AST parse of the script on pull requests and pushes to `main`. The workflow never executes the script, changes boot configuration, creates services, downloads ESET software, or reboots a runner.
+
+This validation is intentionally limited because the script is operationally destructive by design. Functional testing must be performed only in an approved disposable Windows test environment with an explicit recovery path.
 
 ## Important Notes
 

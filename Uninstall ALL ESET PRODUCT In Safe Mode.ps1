@@ -1,3 +1,7 @@
+# Original automation by SysTech.
+# This public repository maintains documentation, safety guidance, and validation around the script.
+# See LICENSE for attribution and rights information.
+
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted
 If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
 {   
